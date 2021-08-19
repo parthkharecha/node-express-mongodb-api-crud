@@ -1,10 +1,11 @@
 module.exports = app => {
+    const auth = require("../middleware/auth");
     const tutorials = require("../controllers/tutorial.controller.js");
-
-    var router = require("express").Router();
+    app.use(auth);
+    const router = require("express").Router();
 
 // Create a new Tutorial
-    router.post("/", tutorials.create);
+    router.post("/" ,tutorials.create);
 
 // Retrieve all Tutorials
     router.get("/", tutorials.findAll);
@@ -24,5 +25,7 @@ module.exports = app => {
 // Create a new Tutorial
     router.delete("/", tutorials.deleteAll);
 
-    app.use('/api/tutorials', router);
+    router.post("/test_post", tutorials.testPost);
+
+    app.use('/api/tutorials' ,router);
 }

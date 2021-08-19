@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
@@ -34,9 +35,12 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/tutorials.routes")(app);
+require("./app/routes/user.routes")(app);
+
+const { API_PORT } = process.env;
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || API_PORT;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
