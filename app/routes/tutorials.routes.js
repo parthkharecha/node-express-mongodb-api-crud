@@ -1,8 +1,9 @@
 module.exports = app => {
     const auth = require("../middleware/auth");
     const tutorials = require("../controllers/tutorial.controller.js");
-    app.use(auth);
+    // app.use(auth);
     const router = require("express").Router();
+    router.use(auth);
 
 // Create a new Tutorial
     router.post("/" ,tutorials.create);
